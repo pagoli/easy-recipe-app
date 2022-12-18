@@ -5,8 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { ContextProvider } from "./context/context";
 import FontStyles from "./styles/FontStyles";
 
-import "./index.css";
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ContextProvider>
