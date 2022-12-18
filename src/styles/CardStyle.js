@@ -2,22 +2,14 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin: 4rem 0rem;
-  h3 {
-    font-size: 3rem;
-    font-family: "Josefin Sans";
-  }
-  /* @media (max-width: 1300px) {
-    flex-direction: column;
-  } */
 `;
 
 const Card = styled.div`
   min-height: 25rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   overflow: hidden;
   position: relative;
   img {
-    border-radius: 2rem;
     position: absolute;
     left: 0;
     height: 100%;
@@ -31,11 +23,11 @@ const Card = styled.div`
     bottom: 0%;
     translate: -50% 0%;
     padding: 0 1rem;
-    color: white;
+    color: var(--white);
     width: 100%;
     text-align: center;
-    font-weight: 600;
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: var(--fz-2xl);
     height: 40%;
     display: flex;
     justify-content: center;
@@ -47,7 +39,7 @@ const Gradient = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  background: var(--gradient-images);
 `;
 
 export { Wrapper, Card, Gradient };

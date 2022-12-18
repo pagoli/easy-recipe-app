@@ -8,15 +8,22 @@ const Grid = styled(motion.div)`
 `;
 
 const Card = styled.div`
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: var(--white);
+  border: 0.1rem solid var(--green);
   img {
-    border-radius: 2rem;
     width: 100%;
     object-fit: cover;
   }
   h4 {
     text-align: center;
-    font-size: 2rem;
+    font-size: var(--fz-xl);
     padding: 1rem;
+  }
+  &:hover {
+    box-shadow: 1px 1px 20px -5px var(--gray);
+    transform: scale(1.05);
   }
 `;
 
