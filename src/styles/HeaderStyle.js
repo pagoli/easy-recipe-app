@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Logo = styled(Link)`
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: var(--fz-3xl);
   font-weight: 400;
   display: flex;
   flex-flow: column nowrap;
@@ -29,6 +29,19 @@ const Nav = styled.nav`
     padding-top: 1rem;
     font-family: "Abril Fatface";
     text-transform: uppercase;
+    color: var(--green);
+    -webkit-text-stroke: 1px var(--black);
+  }
+  span {
+    /* color: var(--yellow); */
+    background: -webkit-linear-gradient(#7fe6a4, #ffde17);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* color: white; */
+    /* font-size: 50px; */
+    /* text-shadow: -1px 1px 0 rgba(0, 0, 0, 0.5), 1px 1px 0 rgba(0, 0, 0, 0.5),
+      1px -1px 0 rgba(0, 0, 0, 0.5), -1px -1px 0 rgba(0, 0, 0, 0.5); */
+    -webkit-text-stroke: 1px var(--black);
   }
 `;
 

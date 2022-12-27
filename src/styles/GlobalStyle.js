@@ -22,14 +22,20 @@ body {
   background-size: auto;
 }
 
-h4 {
-  font-size: var(--fz-4xl);
+h2 {
+  font-size: var(--fz-5xl)
 }
 
 h3 {
-  font-size: var(--fz-5xl);
-  line-height: 2.5rem;
-  margin: 2rem 0rem;
+  font-size: var(--fz-3xl);
+}
+
+h4 {
+  font-size: var(--fz-xl);
+}
+
+h5 {
+  font-size: var(--fz-md);
 }
 
 a {

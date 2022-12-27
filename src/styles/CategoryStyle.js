@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import device from "./device";
 
 const List = styled.div`
   display: flex;
   justify-content: center;
   margin: 2rem 0;
-  h4 {
-    font-size: 1.5rem;
+
+  @media ${device.mobileL} {
+    /* overflow-x: scroll; */
+    display: flex;
+    overflow: auto;
+    outline: 1px dashed black;
+    flex: none;
+    /* flex-wrap: wrap; */
   }
 `;
 
@@ -20,7 +27,7 @@ const SLink = styled(NavLink)`
   margin-right: 2rem;
   color: var(--black);
   text-decoration: none;
-  background: rgb(255, 222, 23);
+  background: var(--yellow);
   background: var(--gradient-radial-green-yellow);
   background-size: 150% 150%;
   width: 8rem;
@@ -29,7 +36,7 @@ const SLink = styled(NavLink)`
   &:hover {
     background: var(--green);
   }
-  h4 {
+  h5 {
     padding-top: 0.5rem;
   }
   svg {
@@ -37,8 +44,25 @@ const SLink = styled(NavLink)`
   }
   &.active {
     background: var(--green);
-    box-shadow: 1px 1px 5px 1px var(--yellow);
+    box-shadow: 1px 1px 2px 1px var(--yellow);
     transform: scale(1.05);
+  }
+  @media ${device.mobileL} {
+    border-radius: 10%;
+    margin: 1rem 0;
+    margin-right: 1rem;
+    height: 4rem;
+    flex-flow: row nowrap;
+    position: relative;
+    scroll-snap-align: center;
+    width: 100%;
+    h5 {
+      font-size: var(--fz-xs);
+      color: blue;
+    }
+    svg {
+      padding-right: 0.6rem;
+    }
   }
 `;
 

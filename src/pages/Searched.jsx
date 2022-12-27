@@ -23,18 +23,29 @@ const Searched = () => {
   }, [params.searchResults]);
 
   return (
-    <Grid>
-      {searchedRecipes.map((recipe) => {
-        return (
-          <Card key={recipe.id}>
-            <Link to={`/recipe/${recipe.id}`}>
-              <img src={recipe.image} alt={recipe.title} />
-              <h4>{recipe.title}</h4>
-            </Link>
-          </Card>
-        );
-      })}
-    </Grid>
+    <>
+      {params.searchResults ? (
+        <h3>
+          Your search:{" "}
+          {params.searchResults.charAt(0).toUpperCase() +
+            params.searchResults.slice(1)}
+        </h3>
+      ) : (
+        <></>
+      )}
+      <Grid>
+        {searchedRecipes.map((recipe) => {
+          return (
+            <Card key={recipe.id}>
+              <Link to={`/recipe/${recipe.id}`}>
+                <img src={recipe.image} alt={recipe.title} />
+                <h4>{recipe.title}</h4>
+              </Link>
+            </Card>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 
