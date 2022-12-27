@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { FormStyle } from "../styles/SearchStyle";
 import { FaSearch } from "react-icons/fa";
-import { Context } from "../context/context";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {

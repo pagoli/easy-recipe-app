@@ -7,7 +7,9 @@ const Header = () => {
     <Nav>
       <Logo to={"/"}>
         <GrRestaurant />
-        <h2>Cooking&Fun</h2>
+        <h2>
+          Coo<span>king</span>&Fun
+        </h2>
       </Logo>
     </Nav>
   );

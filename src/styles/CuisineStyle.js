@@ -18,12 +18,7 @@ const Card = styled.div`
   }
   h4 {
     text-align: center;
-    font-size: var(--fz-xl);
     padding: 1rem;
-  }
-  &:hover {
-    box-shadow: 1px 1px 20px -5px var(--gray);
-    transform: scale(1.05);
   }
 `;
 

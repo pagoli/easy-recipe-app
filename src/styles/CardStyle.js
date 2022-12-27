@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin: 4rem 0rem;
+  h3 {
+    line-height: 2.5rem;
+    margin: 2rem 0rem;
+  }
 `;
 
 const Card = styled.div`
@@ -9,6 +13,9 @@ const Card = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
+  &:hover {
+    box-shadow: 2px 2px 2px 1px var(--yellow), -2px -2px 2px 1px var(--green);
+  }
   img {
     position: absolute;
     left: 0;

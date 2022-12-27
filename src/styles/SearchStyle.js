@@ -17,10 +17,10 @@ const FormStyle = styled.form`
     padding-left: 5rem;
     width: 100%;
     &:hover {
-      box-shadow: 1px 1px 5px 1px var(--gray);
+      box-shadow: 1px 1px 5px 1px var(--yellow);
     }
     &:focus {
-      box-shadow: 1px 1px 5px 1px var(--gray);
+      box-shadow: 1px 1px 5px 1px var(--yellow);
     }
   }
   svg {

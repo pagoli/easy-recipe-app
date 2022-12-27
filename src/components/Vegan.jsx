@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import fs from "fs/promises";
 
 import { Wrapper, Card, Gradient } from "../styles/CardStyle";
 
@@ -23,6 +24,10 @@ const Vegan = () => {
         }&number=9&tags=vegan`
       );
       const data = await api.json();
+      const writeVegan = await fs.writeFile("vegan.json", data, (err) => {
+        if (err) throw err;
+        console.log("The file has been saved!");
+      });
 
       localStorage.setItem("vegan", JSON.stringify(data.recipes));
       setVegan(data.recipes);
