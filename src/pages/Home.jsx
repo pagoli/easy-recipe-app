@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 const Home = () => {
   return (
     <motion.div
-      animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
+      animate={{ opacity: "var(--opacity-full)" }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: "var(--duration-page" }}
     >
       <Vegan />
       <Popular />

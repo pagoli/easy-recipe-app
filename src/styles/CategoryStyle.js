@@ -7,13 +7,11 @@ const List = styled.div`
   justify-content: center;
   margin: 2rem 0;
 
-  @media ${device.mobileL} {
-    /* overflow-x: scroll; */
+  @media ${device.tablet} {
     display: flex;
     overflow: auto;
     outline: 1px dashed black;
     flex: none;
-    /* flex-wrap: wrap; */
   }
 `;
 

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../context/context";
-import { Grid, Card } from "../styles/CuisineStyle";
-// import { motion } from "framer-motion";
+import { Wrapper, Grid, Card } from "../styles/CuisineStyle";
 import { Link, useParams } from "react-router-dom";
 // useParams allows to pull out the keyword from the link
 
@@ -19,6 +18,10 @@ const Cuisine = () => {
     );
     const recipes = await data.json();
     setCuisine(recipes.results);
+    // localStorage.setItem(
+    //   `${name.toLowerCase()}`,
+    //   JSON.stringify(recipes.results)
+    // );
   };
 
   const getQuery = (name) => {
@@ -46,30 +49,36 @@ const Cuisine = () => {
   }, [params.type]);
 
   return (
-    <>
+    <Wrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+    >
       {params.type ? (
         <h3>{params.type.charAt(0).toUpperCase() + params.type.slice(1)}</h3>
       ) : (
         <></>
       )}
-      <Grid
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {cuisine.map((recipe) => {
-          return (
-            <Card key={recipe.id}>
-              <Link to={`/recipe/${recipe.id}`}>
-                <img src={recipe.image} alt={recipe.title} />
-                <h4>{recipe.title}</h4>
-              </Link>
-            </Card>
-          );
-        })}
+      <Grid>
+        {cuisine === undefined || cuisine === null ? (
+          <div>
+            <h3>No recipes</h3>
+          </div>
+        ) : (
+          cuisine.map((recipe) => {
+            return (
+              <Card key={recipe.id}>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <h4>{recipe.title}</h4>
+                </Link>
+              </Card>
+            );
+          })
+        )}
       </Grid>
-    </>
+    </Wrapper>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Context } from "../context/context";
 import { useParams, Link } from "react-router-dom";
-import { Card, Grid } from "../styles/CuisineStyle";
+import { Wrapper, Card, Grid } from "../styles/CuisineStyle";
 
 const Searched = () => {
   const { searchedRecipes, setSearchedRecipes } = useContext(Context);
@@ -23,7 +23,12 @@ const Searched = () => {
   }, [params.searchResults]);
 
   return (
-    <>
+    <Wrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+    >
       {params.searchResults ? (
         <h3>
           Your search:{" "}
@@ -33,19 +38,30 @@ const Searched = () => {
       ) : (
         <></>
       )}
-      <Grid>
-        {searchedRecipes.map((recipe) => {
-          return (
-            <Card key={recipe.id}>
-              <Link to={`/recipe/${recipe.id}`}>
-                <img src={recipe.image} alt={recipe.title} />
-                <h4>{recipe.title}</h4>
-              </Link>
-            </Card>
-          );
-        })}
+      <Grid
+        initial="hidden"
+        animate="visible"
+        exit={{ opacity: 0, transition: { duration: 1 } }}
+        variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+      >
+        {searchedRecipes !== undefined || searchedRecipes !== null ? (
+          <div>
+            <h3>No recipes</h3>
+          </div>
+        ) : (
+          searchedRecipes.map((recipe) => {
+            return (
+              <Card key={recipe.id}>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <h4>{recipe.title}</h4>
+                </Link>
+              </Card>
+            );
+          })
+        )}
       </Grid>
-    </>
+    </Wrapper>
   );
 };
 
