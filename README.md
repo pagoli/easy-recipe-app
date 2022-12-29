@@ -5,7 +5,7 @@ This app was created for learning purposes only. It uses Spoonacular-API, React 
 
 - Vite (2.9.9)
 - React
-- React-Router-Dom
+- React-Router-Dom (Version 6)
 - Styled-Components (with responsivity and variables)
 - Framer-Motion
 - SplideJS

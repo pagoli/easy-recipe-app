@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { keyframes } from "styled-components";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Logo = styled(Link)`
@@ -10,9 +10,10 @@ const Logo = styled(Link)`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  &:hover {
-  }
 `;
+
+const LogoAnimation = styled(motion.div)``;
+
 const Nav = styled.nav`
   padding: 4rem 0rem;
   display: flex;
@@ -30,19 +31,14 @@ const Nav = styled.nav`
     font-family: "Abril Fatface";
     text-transform: uppercase;
     color: var(--green);
-    -webkit-text-stroke: 1px var(--black);
+    -webkit-text-stroke: 1px var(--gray);
   }
   span {
-    /* color: var(--yellow); */
     background: -webkit-linear-gradient(#7fe6a4, #ffde17);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* color: white; */
-    /* font-size: 50px; */
-    /* text-shadow: -1px 1px 0 rgba(0, 0, 0, 0.5), 1px 1px 0 rgba(0, 0, 0, 0.5),
-      1px -1px 0 rgba(0, 0, 0, 0.5), -1px -1px 0 rgba(0, 0, 0, 0.5); */
-    -webkit-text-stroke: 1px var(--black);
+    -webkit-text-stroke: 1px var(--gray);
   }
 `;
 
-export { Logo, Nav };
+export { Logo, LogoAnimation, Nav };

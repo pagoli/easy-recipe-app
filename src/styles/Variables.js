@@ -22,7 +22,7 @@ const Variables = css`
     // Colors
     --white: #fff;
     --black: #000;
-    --gray: #7f7f7f;
+    --gray: #3e3e3e;
     --blue: #057dcd;
     --yellow: #ffde17;
     --darkFont: #3c3c3c;
@@ -42,6 +42,8 @@ const Variables = css`
     // Other
     --max-width: 1500px;
     --transition: all 0.25s ease-in-out;
+    --duration-page: 0.4;
+    --opacity-full: 1;
   }
 `;
 
