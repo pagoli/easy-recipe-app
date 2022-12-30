@@ -17,7 +17,7 @@ const Category = () => {
         <GiHamburger />
         <h5>American</h5>
       </SLink>
-      <SLink to={"/cuisine/Chinese"}>
+      <SLink to={"/cuisine/chinese"}>
         <GiChopsticks />
         <h5>Chinese</h5>
       </SLink>
