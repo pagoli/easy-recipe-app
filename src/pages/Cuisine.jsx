@@ -17,14 +17,18 @@ const Cuisine = () => {
         import.meta.env.VITE_API_KEY
       }&number=9&${searchQuery}`
     );
-
+    console.log("dataaa", data);
     if (data.status !== 200) {
-      const localData = await fetch(`../../src/data/${name}.json`);
+      const localData = await fetch(
+        `../../src/data/${name.toLowerCase()}.json`
+      );
       const recipes = await localData.json();
+      console.log("data from here ?");
 
       setCuisine(recipes);
     }
     const recipes = await data.json();
+    console.log("recipes chinese?", recipes);
 
     setCuisine(recipes.results);
   };
@@ -34,7 +38,7 @@ const Cuisine = () => {
     switch (name) {
       case "italian":
       case "american":
-      case "Chinese":
+      case "chinese":
         result = `cuisine=${name}`;
         break;
       case "vegan":
@@ -50,6 +54,7 @@ const Cuisine = () => {
   };
 
   useEffect(() => {
+    console.log("PT", params.type);
     if (cuisine !== undefined || cuisine !== null) {
       setIsLoading(false);
     }
@@ -58,7 +63,9 @@ const Cuisine = () => {
         localStorage.getItem(`${params.type.toLowerCase()}`)
       );
       console.log("cuisine Local =>", cuisine);
-      setCuisine(cuisine);
+      if (cuisine !== null) {
+        setCuisine(cuisine);
+      }
     } else {
       getCuisine(params.type);
     }
