@@ -10,6 +10,14 @@ const Cuisine = () => {
 
   let params = useParams();
 
+  const localStorageValues = () => {
+    let localKeys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      localKeys.push(localStorage.key(i).toLowerCase());
+    }
+    return localKeys;
+  };
+
   const getCuisine = async (name) => {
     const searchQuery = await getQuery(name);
     const data = await fetch(
@@ -17,20 +25,19 @@ const Cuisine = () => {
         import.meta.env.VITE_API_KEY
       }&number=9&${searchQuery}`
     );
-    console.log("dataaa", data);
     if (data.status !== 200) {
-      const localData = await fetch(
-        `../../src/data/${name.toLowerCase()}.json`
-      );
-      const recipes = await localData.json();
-      console.log("data from here ?");
-
-      setCuisine(recipes);
+      fetchLocalData();
     }
     const recipes = await data.json();
-    console.log("recipes chinese?", recipes);
-
     setCuisine(recipes.results);
+  };
+
+  const fetchLocalData = async () => {
+    const localData = await fetch(
+      `../../src/data/${params.type.toLowerCase()}.json`
+    );
+    const recipes = await localData.json();
+    setCuisine(recipes);
   };
 
   const getQuery = (name) => {
@@ -54,19 +61,20 @@ const Cuisine = () => {
   };
 
   useEffect(() => {
-    console.log("PT", params.type);
     if (cuisine !== undefined || cuisine !== null) {
       setIsLoading(false);
     }
-    if (params.type !== undefined) {
+
+    let localKeys = localStorageValues();
+    if (localKeys.includes(params.type)) {
+      console.log("true localKeys included? ", localKeys);
       const cuisine = JSON.parse(
         localStorage.getItem(`${params.type.toLowerCase()}`)
       );
-      console.log("cuisine Local =>", cuisine);
-      if (cuisine !== null) {
-        setCuisine(cuisine);
-      }
-    } else {
+      setCuisine(cuisine);
+    }
+
+    if (cuisine === null || !localKeys.includes(params.type)) {
       getCuisine(params.type);
     }
   }, [params.type]);
@@ -99,7 +107,7 @@ const Cuisine = () => {
         <></>
       )}
       <Grid variants={container} initial="hidden" animate="show">
-        {console.log("CUISINE=> ", cuisine)}
+        {/* {console.log("CUISINE JSX=> ", cuisine)} */}
         {(isLoading && cuisine == undefined) || cuisine === null ? (
           <div>
             <h3>No recipes</h3>
