@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Context } from "../context/context";
 import { useParams, Link } from "react-router-dom";
 import { Wrapper, Card, Grid } from "../styles/CuisineStyle";
 
 const Searched = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { searchedRecipes, setSearchedRecipes } = useContext(Context);
   let params = useParams();
   // const navigate = useNavigate();
@@ -15,10 +16,17 @@ const Searched = () => {
       }&number=9&query=${name}`
     );
     const recipes = await data.json();
+    if (recipes.results > 0) {
+      setIsLoading(true);
+    }
     setSearchedRecipes(recipes.results);
+    console.log("Searched Recipes", recipes.results);
   };
 
   useEffect(() => {
+    if (searchedRecipes !== undefined || searchedRecipes !== null) {
+      setIsLoading(false);
+    }
     getSearch(params.searchResults);
   }, [params.searchResults]);
 
@@ -44,7 +52,9 @@ const Searched = () => {
         exit={{ opacity: 0, transition: { duration: 1 } }}
         variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
       >
-        {searchedRecipes !== undefined || searchedRecipes !== null ? (
+        {searchedRecipes === undefined ||
+        searchedRecipes === null ||
+        isLoading === true ? (
           <div>
             <h3>No recipes</h3>
           </div>

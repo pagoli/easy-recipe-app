@@ -67,7 +67,7 @@ const Cuisine = () => {
 
     let localKeys = localStorageValues();
     if (localKeys.includes(params.type)) {
-      console.log("true localKeys included? ", localKeys);
+      // console.log("true localKeys included? ", localKeys);
       const cuisine = JSON.parse(
         localStorage.getItem(`${params.type.toLowerCase()}`)
       );
