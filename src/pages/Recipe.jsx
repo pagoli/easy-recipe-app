@@ -3,6 +3,7 @@ import { Context } from "../context/context";
 import {
   ContentBox,
   DetailWrapper,
+  ButtonBox,
   Button,
   ImageBox,
   InfoBox,
@@ -37,18 +38,20 @@ const Recipe = () => {
           <img src={detailedRecipe.image} alt={detailedRecipe.title} />
         </ImageBox>
         <InfoBox>
-          <Button
-            className={activeTab === "instructions" ? "active" : ""}
-            onClick={() => setActiveTab("instructions")}
-          >
-            Instructions
-          </Button>
-          <Button
-            className={activeTab === "ingredients" ? "active" : ""}
-            onClick={() => setActiveTab("ingredients")}
-          >
-            Ingredients
-          </Button>
+          <ButtonBox>
+            <Button
+              className={activeTab === "instructions" ? "active" : ""}
+              onClick={() => setActiveTab("instructions")}
+            >
+              Instructions
+            </Button>
+            <Button
+              className={activeTab === "ingredients" ? "active" : ""}
+              onClick={() => setActiveTab("ingredients")}
+            >
+              Ingredients
+            </Button>
+          </ButtonBox>
           {activeTab === "instructions" && (
             <div>
               <h3

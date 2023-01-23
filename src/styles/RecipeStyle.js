@@ -1,11 +1,21 @@
 import styled from "styled-components";
+import device from "./device";
 
 const ContentBox = styled.main`
-  margin: 2rem 0 0 0;
+  /* margin: 2rem 0 0 0; */
   h2 {
     margin: 4rem 0rem;
-    font-size: 4rem;
+    font-size: var(--fz-5xl);
     border-bottom: 1px solid #313131;
+  }
+
+  @media ${device.tablet} {
+    /* margin: 1rem 0 0 0; */
+    h2 {
+      margin: 2rem 0rem;
+      font-size: var(--fz-3xl);
+      border-bottom: 1px solid #313131;
+    }
   }
 `;
 
@@ -17,7 +27,7 @@ const DetailWrapper = styled.div`
     color: white;
   }
   h3 {
-    font-size: 2rem;
+    font-size: var(--fz-2xl);
     line-height: 3.5rem;
     font-weight: normal;
   }
@@ -43,9 +53,33 @@ const DetailWrapper = styled.div`
   ol li {
     line-height: 3rem;
   }
+
+  @media ${device.tablet} {
+    flex-direction: column;
+    h3 {
+      font-size: 2rem;
+      line-height: 3.5rem;
+      font-weight: normal;
+    }
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  /* height: 100%; */
+  img {
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    margin: 1rem 0 3rem;
+    /* img {
+      padding: 3rem 0;
+    } */
+  }
 `;
 
 const Button = styled.button`
+  font-size: var(--fz-xl);
   padding: 1rem 2rem;
   color: #313131;
   background: white;
@@ -53,15 +87,28 @@ const Button = styled.button`
   border-radius: 10px;
   margin-right: 2rem;
   font-weight: 600;
+  @media ${device.tablet} {
+    font-size: var(--fz-xl);
+    margin: 0;
+    &:last-of-type {
+      margin-left: 3rem;
+    }
+  }
 `;
 
 const ImageBox = styled.div`
-  margin: 7rem 0 0 5rem;
+  margin: 0 0 0 3rem;
   display: flex;
   align-content: flex-start;
   height: 100%;
   img {
     width: 100%;
+  }
+  @media ${device.tablet} {
+    margin: 1rem 0 3rem;
+    /* img {
+      padding: 3rem 0;
+    } */
   }
 `;
 
@@ -69,4 +116,4 @@ const InfoBox = styled.div`
   width: 80%;
 `;
 
-export { ContentBox, DetailWrapper, Button, InfoBox, ImageBox };
+export { ContentBox, DetailWrapper, ButtonBox, Button, InfoBox, ImageBox };

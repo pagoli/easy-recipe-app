@@ -9,9 +9,10 @@ const List = styled.div`
 
   @media ${device.tablet} {
     display: flex;
-    overflow: auto;
-    outline: 1px dashed black;
+    overflow-y: hidden;
+    overflow-x: auto;
     flex: none;
+    justify-content: start;
   }
 `;
 
@@ -45,21 +46,22 @@ const SLink = styled(NavLink)`
     box-shadow: 1px 1px 2px 1px var(--yellow);
     transform: scale(1.05);
   }
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     border-radius: 10%;
     margin: 1rem 0;
     margin-right: 1rem;
+    width: 10rem;
     height: 4rem;
     flex-flow: row nowrap;
     position: relative;
-    scroll-snap-align: center;
-    width: 100%;
+    scroll-snap-align: start;
+    /* padding: 0 0 0 2rem; */
     h5 {
       font-size: var(--fz-xs);
-      color: blue;
     }
     svg {
-      padding-right: 0.6rem;
+      padding: 0 0.6rem;
+      /* padding-right: 0.6rem; */
     }
   }
 `;
