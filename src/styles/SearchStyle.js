@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import device from "./device";
 
 const FormStyle = styled.form`
   margin: 0rem 15%;
@@ -29,6 +30,10 @@ const FormStyle = styled.form`
     left: -0.8%;
     translate: 100% 50%;
     font-size: var(--fz-xl);
+  }
+
+  @media ${device.tablet} {
+    margin: 0;
   }
 `;
 
