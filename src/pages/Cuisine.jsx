@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/context";
 import { Wrapper, Grid, Card } from "../styles/CuisineStyle";
 import { Link, useParams } from "react-router-dom";
-//
 
 const Cuisine = () => {
   const [isLoading, setIsLoading] = useState(true);
