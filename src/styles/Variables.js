@@ -18,6 +18,9 @@ const Variables = css`
     --fz-3xl: 28px;
     --fz-4xl: 32px;
     --fz-5xl: 36px;
+    --fz-6xl: 50px;
+    --fz-7xl: 64px;
+    --fz-8xl: 72px;
 
     // Colors
     --white: #fff;

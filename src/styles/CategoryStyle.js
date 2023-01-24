@@ -19,6 +19,7 @@ const List = styled.div`
 const SLink = styled(NavLink)`
   display: flex;
   margin: 2rem 0;
+  padding: 0.2rem;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
@@ -39,7 +40,7 @@ const SLink = styled(NavLink)`
     padding-top: 0.5rem;
   }
   svg {
-    font-size: 2rem;
+    font-size: var(--fz-sm);
   }
   &.active {
     background: var(--green);
@@ -55,13 +56,11 @@ const SLink = styled(NavLink)`
     flex-flow: row nowrap;
     position: relative;
     scroll-snap-align: start;
-    /* padding: 0 0 0 2rem; */
     h5 {
-      font-size: var(--fz-xs);
+      font-size: var(--fz-md);
     }
     svg {
-      padding: 0 0.6rem;
-      /* padding-right: 0.6rem; */
+      margin: 0 0.1rem;
     }
   }
 `;

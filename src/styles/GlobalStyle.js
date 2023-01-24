@@ -20,14 +20,17 @@ body {
   margin: 0% 15%;
   background-image: url(/images/recipe_bg_white.png);
   background-size: auto;
+  
 }
 
 h2 {
-  font-size: var(--fz-5xl)
+  font-size: var(--fz-6xl)
 }
 
 h3 {
-  font-size: var(--fz-3xl);
+  font-size: var(--fz-4xl);
+  line-height: 5rem;
+  font-weight: normal;
 }
 
 h4 {
