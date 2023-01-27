@@ -50,7 +50,7 @@ const DetailWrapper = styled.div`
     h3,
     ul > li,
     ol > li {
-      font-size: var(--fz-xl);
+      font-size: var(--fz-2xl);
       line-height: 3.5rem;
     }
   }
@@ -156,7 +156,7 @@ const ImageBox = styled.div`
 const InfoBox = styled.div`
   width: 80%;
   margin-bottom: 3rem;
-  @media ${device.laptop} {
+  @media ${device.laptopL} {
     width: 100%;
   }
 `;

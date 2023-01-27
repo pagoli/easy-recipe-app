@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./Home";
 import Cuisine from "../pages/Cuisine";
 import Recipe from "../pages/Recipe";
-import Searched from "../pages/Searched";
+import { Searched } from "../pages/Searched";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 

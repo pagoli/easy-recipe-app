@@ -4,31 +4,44 @@ import { useParams, Link } from "react-router-dom";
 import { Wrapper, Card, Grid } from "../styles/CuisineStyle";
 
 const Searched = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { searchedRecipes, setSearchedRecipes } = useContext(Context);
+  // const [isLoading, setIsLoading] = useState(true);
+  const { searchedRecipes, setSearchedRecipes, isLoading, setIsLoading } =
+    useContext(Context);
   let params = useParams();
-  // const navigate = useNavigate();
+  console.log(params, "=> ");
+  // console.log("params.searchResults => ", params.searchResults);
 
-  const getSearch = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
-        import.meta.env.VITE_API_KEY
-      }&number=9&query=${name}`
-    );
-    const recipes = await data.json();
-    if (recipes.results > 0) {
-      setIsLoading(true);
-    }
-    setSearchedRecipes(recipes.results);
-    console.log("Searched Recipes", recipes.results);
-  };
+  // const getSearch = async (name) => {
+  //   const data = await fetch(
+  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
+  //       import.meta.env.VITE_API_KEY
+  //     }&number=9&query=${name}`
+  //   );
+  //   const recipes = await data.json();
+  //   if (data.status !== 200) {
+  //     res.send("No data from API");
+  //     res.end;
+  //     // fetchLocalData();
+  //   }
+  //   if (recipes.results > 0) {
+  //     setIsLoading(true);
+  //   }
+  //   setSearchedRecipes(recipes.results);
+  //   console.log("Searched Recipes", recipes.results);
+  //   // SEARCHED RECIPES SHOULD NOW BE ADDED TO LOCAL STORAGE
+  //   // TO PREVENT TOKEN
+  //   localStorage.setItem(
+  //     `${params.searchResults}`,
+  //     JSON.stringify(recipes.results)
+  //   );
+  // };
 
-  useEffect(() => {
-    if (searchedRecipes !== undefined || searchedRecipes !== null) {
-      setIsLoading(false);
-    }
-    getSearch(params.searchResults);
-  }, [params.searchResults]);
+  // useEffect(() => {
+  //   if (searchedRecipes !== undefined || searchedRecipes !== null) {
+  //     setIsLoading(false);
+  //   }
+  //   getSearch(params.searchResults);
+  // }, [params.searchResults]);
 
   return (
     <Wrapper
@@ -75,4 +88,4 @@ const Searched = () => {
   );
 };
 
-export default Searched;
+export { Searched };

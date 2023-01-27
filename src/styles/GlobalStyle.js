@@ -38,7 +38,7 @@ h4 {
 }
 
 h5 {
-  font-size: var(--fz-md);
+  font-size: var(--fz-xl);
 }
 
 a {

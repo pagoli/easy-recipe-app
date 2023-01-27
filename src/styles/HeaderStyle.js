@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import device from "./device";
 
 const Logo = styled(Link)`
   text-decoration: none;
-  font-size: var(--fz-3xl);
   font-weight: 400;
   display: flex;
   flex-flow: column nowrap;
@@ -20,14 +20,15 @@ const Nav = styled.nav`
   justify-content: center;
   align-items: center;
   svg {
-    font-size: 5rem;
+    font-size: var(--fz-8xl);
     color: black;
-    border: 2px solid black;
+    border: 4px solid black;
     border-radius: 50%;
     padding: 0.5rem;
   }
   h2 {
     padding-top: 1rem;
+    font-size: var(--fz-9xl);
     font-family: "Abril Fatface";
     text-transform: uppercase;
     color: var(--green);
@@ -38,6 +39,25 @@ const Nav = styled.nav`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px var(--gray);
+  }
+  @media ${device.laptopL} {
+    padding: 2rem 0rem;
+    h2 {
+      font-size: var(--fz-6xl);
+    }
+    svg {
+      font-size: var(--fz-6xl);
+      border: 2px solid black;
+    }
+  }
+  @media ${device.mobileL} {
+    /* padding: 2rem 0rem; */
+    h2 {
+      font-size: var(--fz-5xl);
+    }
+    svg {
+      border: 1.5px solid black;
+    }
   }
 `;
 

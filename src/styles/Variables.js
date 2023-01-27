@@ -21,6 +21,9 @@ const Variables = css`
     --fz-6xl: 50px;
     --fz-7xl: 64px;
     --fz-8xl: 72px;
+    --fz-9xl: 92px;
+
+    // Line height
 
     // Colors
     --white: #fff;
