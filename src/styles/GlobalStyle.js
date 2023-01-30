@@ -28,7 +28,7 @@ h2 {
 }
 
 h3 {
-  font-size: var(--fz-4xl);
+  font-size: var(--fz-3xl);
   line-height: 5rem;
   font-weight: normal;
 }

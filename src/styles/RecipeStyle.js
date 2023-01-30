@@ -34,16 +34,15 @@ const DetailWrapper = styled.div`
   ol {
     margin-top: 2rem;
     padding-left: 3rem;
+    font-size: var(--fz-3xl);
     li {
       padding-bottom: 1rem;
-      font-size: var(--fz-4xl);
+      line-height: 5rem;
+
       &::marker {
         color: var(--blue);
       }
     }
-  }
-  ol li {
-    line-height: 3rem;
   }
 
   @media ${device.laptopL} {
@@ -58,7 +57,9 @@ const DetailWrapper = styled.div`
   @media ${device.laptop} {
     flex-direction: column;
     width: 100%;
-    h3 {
+    h3,
+    ul > li,
+    ol > li {
       font-size: var(--fz-xl);
       line-height: 3rem;
     }

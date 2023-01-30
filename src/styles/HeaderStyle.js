@@ -28,7 +28,7 @@ const Nav = styled.nav`
   }
   h2 {
     padding-top: 1rem;
-    font-size: var(--fz-9xl);
+    font-size: var(--fz-7xl);
     font-family: "Abril Fatface";
     text-transform: uppercase;
     color: var(--green);

@@ -98,6 +98,7 @@ export default function ContextProvider({ children }) {
         searchResults !== undefined ||
         searchResults !== null
       ) {
+        console.log("uE => sR", searchResults);
         setIsLoading(false);
       }
 
@@ -120,7 +121,7 @@ export default function ContextProvider({ children }) {
       }
 
       if (cuisine === null || !localKeys.includes(params.type)) {
-        getCuisine(params.type);
+        getCuisine(params.type || params.searchResults);
       }
       // if (
       //   searchedRecipes === null ||

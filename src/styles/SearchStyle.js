@@ -11,7 +11,7 @@ const FormStyle = styled.form`
   input {
     border: none;
     background: var(--gradient-linear-green-yellow);
-    font-size: var(--fz-6xl);
+    font-size: var(--fz-5xl);
     color: var(--darkFont);
     padding: 1rem 4rem 1rem 8rem;
     border-radius: 1rem;
@@ -26,10 +26,10 @@ const FormStyle = styled.form`
   }
   svg {
     position: absolute;
-    top: 5%;
+    top: 0%;
     left: -0.8%;
     translate: 100% 50%;
-    font-size: var(--fz-5xl);
+    font-size: var(--fz-3xl);
   }
 
   @media ${device.laptopL} {
