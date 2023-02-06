@@ -57,4 +57,4 @@ const Variables = css`
   }
 `;
 
-export default Variables;
+export { Variables };

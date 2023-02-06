@@ -144,4 +144,4 @@ const FrontRecipes = ({ frontSelect }) => {
   );
 };
 
-export default FrontRecipes;
+export { FrontRecipes };

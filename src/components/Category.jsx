@@ -29,4 +29,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export { Category };

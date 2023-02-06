@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Variables from "./Variables";
+import { Variables } from "./Variables";
 
 const GlobalStyle = createGlobalStyle`
 ${Variables};
@@ -44,7 +44,8 @@ h5 {
 a {
   color: var(--darkFont);
   text-decoration: none;
+  cursor: pointer;
 }
 `;
 
-export default GlobalStyle;
+export { GlobalStyle };

@@ -1,6 +1,6 @@
-import Home from "./Home";
-import Cuisine from "../pages/Cuisine";
-import Recipe from "../pages/Recipe";
+import { Home } from "./Home";
+import { Cuisine } from "../pages/Cuisine";
+import { Recipe } from "../pages/Recipe";
 import { Searched } from "../pages/Searched";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -22,4 +22,4 @@ const Pages = () => {
   );
 };
 
-export default Pages;
+export { Pages };

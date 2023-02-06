@@ -18,4 +18,4 @@ const device = {
   desktop: `screen and (max-width: ${sizes.desktop})`,
 };
 
-export default device;
+export { device };

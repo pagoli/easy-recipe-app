@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import device from "./device";
+import { device } from "./device";
 
 const FormStyle = styled.form`
   margin: 0rem 15%;

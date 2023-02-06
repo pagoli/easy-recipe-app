@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import device from "./device";
+import { device } from "./device";
 
 const Logo = styled(Link)`
   text-decoration: none;
