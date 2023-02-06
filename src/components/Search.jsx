@@ -14,12 +14,6 @@ const Search = () => {
     navigate(`/search/${input}`);
   };
 
-  // useEffect(() => {
-  //   if (input === undefined || input === null) {
-  //     setInput("");
-  //   }
-  // }, []);
-
   return (
     <FormStyle onSubmit={submitHandler}>
       <div>
