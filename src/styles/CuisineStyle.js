@@ -6,6 +6,8 @@ const Wrapper = styled(motion.div)`
   h3 {
     line-height: 2.5rem;
     margin: 2rem 0rem;
+    font-size: var(--fz-4xl);
+    color: var(--black);
   }
 `;
 
@@ -27,6 +29,9 @@ const Card = styled(motion.div)`
   h4 {
     text-align: center;
     padding: 1rem;
+    &:hover {
+      color: var(--black);
+    }
   }
 `;
 

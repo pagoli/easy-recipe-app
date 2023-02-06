@@ -29,10 +29,14 @@ const Variables = css`
     --white: #fff;
     --black: #000;
     --gray: #3e3e3e;
+    --light-gray: rgba(0, 0, 0, 0.2);
     --blue: #057dcd;
     --yellow: #ffde17;
+    --light-yellow: rgba(255, 222, 23, 0.4);
     --darkFont: #3c3c3c;
     --green: #7fe6a4;
+    --light-green: rgba(110, 231, 183, 0.2);
+
     --gradient-radial-green-yellow: radial-gradient(
       circle,
       rgba(255, 222, 23, 1) 0%,

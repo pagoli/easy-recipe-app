@@ -21,8 +21,7 @@ const Nav = styled.nav`
   align-items: center;
   svg {
     font-size: var(--fz-8xl);
-    color: black;
-    border: 4px solid black;
+    border: 4px solid var(--black);
     border-radius: 50%;
     padding: 0.5rem;
   }
@@ -47,7 +46,7 @@ const Nav = styled.nav`
     }
     svg {
       font-size: var(--fz-6xl);
-      border: 2px solid black;
+      border: 2px solid var(--black);
     }
   }
   @media ${device.mobileL} {
@@ -56,7 +55,7 @@ const Nav = styled.nav`
       font-size: var(--fz-5xl);
     }
     svg {
-      border: 1.5px solid black;
+      border: 1.5px solid var(--black);
     }
   }
 `;

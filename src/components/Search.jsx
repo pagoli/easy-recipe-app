@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { Context } from "../context/context";
 import { FormStyle } from "../styles/SearchStyle";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  // const { input, setInput } = useContext(Context);
-  const [input, setInput] = useState("");
+  const { input, setInput } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -13,6 +13,12 @@ const Search = () => {
     e.preventDefault();
     navigate(`/search/${input}`);
   };
+
+  // useEffect(() => {
+  //   if (input === undefined || input === null) {
+  //     setInput("");
+  //   }
+  // }, []);
 
   return (
     <FormStyle onSubmit={submitHandler}>

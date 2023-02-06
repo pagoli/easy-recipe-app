@@ -4,12 +4,32 @@ import { useParams, Link } from "react-router-dom";
 import { Wrapper, Card, Grid } from "../styles/CuisineStyle";
 
 const Searched = () => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const { searchedRecipes, setSearchedRecipes, isLoading, setIsLoading } =
-    useContext(Context);
-  let params = useParams();
-  console.log(params, "=> ");
-  // console.log("params.searchResults => ", params.searchResults);
+  const {
+    cuisine,
+    getCuisine,
+    // setCuisine,
+    // searchedRecipes,
+    // setSearchedRecipes,
+    isLoading,
+  } = useContext(Context);
+  let { searchResults } = useParams();
+
+  useEffect(() => {
+    // setSearchedRecipes(searchResults);
+    getCuisine(searchResults);
+    // }, [searchResults, searchedRecipes]);
+  }, [searchResults]);
+
+  // useEffect(() => {
+  // if (userSearch === undefined || userSearch === null) {
+  //   setUserSearch("");
+  // }
+  // console.log("Search Results ====>", searchResults);
+  // setUserSearch(searchResults);
+  // console.log("userSearch ===>", userSearch);
+  // setSearchedRecipes(userSearch);
+  // console.log("Selected Recipes => ", searchedRecipes);
+  // }, [searchResults, userSearch]);
 
   // const getSearch = async (name) => {
   //   const data = await fetch(
@@ -50,11 +70,10 @@ const Searched = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {params.searchResults ? (
+      {searchResults ? (
         <h3>
           Your search:{" "}
-          {params.searchResults.charAt(0).toUpperCase() +
-            params.searchResults.slice(1)}
+          {searchResults.charAt(0).toUpperCase() + searchResults.slice(1)}
         </h3>
       ) : (
         <></>
@@ -65,14 +84,12 @@ const Searched = () => {
         exit={{ opacity: 0, transition: { duration: 1 } }}
         variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
       >
-        {searchedRecipes === undefined ||
-        searchedRecipes === null ||
-        isLoading === true ? (
+        {(isLoading && cuisine === undefined) || cuisine === null ? (
           <div>
             <h3>No recipes</h3>
           </div>
         ) : (
-          searchedRecipes.map((recipe) => {
+          cuisine?.map((recipe) => {
             return (
               <Card key={recipe.id}>
                 <Link to={`/recipe/${recipe.id}`}>

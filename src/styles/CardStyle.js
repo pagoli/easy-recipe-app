@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
-  h3 {
-    line-height: 2.5rem;
-    margin: 2rem 0rem;
-  }
-`;
-
 const Card = styled.div`
   min-height: 25rem;
   border-radius: 1rem;
@@ -39,6 +31,11 @@ const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover {
+      -webkit-text-stroke: 0.5px var(--gray);
+      /* color: var(--yellow); */
+      scale: 1.05;
+    }
   }
 `;
 const Gradient = styled.div`
@@ -49,4 +46,4 @@ const Gradient = styled.div`
   background: var(--gradient-images);
 `;
 
-export { Wrapper, Card, Gradient };
+export { Card, Gradient };

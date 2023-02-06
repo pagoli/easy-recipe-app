@@ -1,47 +1,137 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 const Context = createContext();
 
 export default function ContextProvider({ children }) {
-  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  // const [currentLocation, setCurrentLocation] = useState("");
+  // const [selectedCuisine, setSelectedCuisine] = useState("");
   const [cuisine, setCuisine] = useState([]);
-  const [searchedRecipes, setSearchedRecipes] = useState([]);
+  const [input, setInput] = useState("");
+  const [type, setType] = useState("");
+  // const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [detailedRecipe, setDetailedRecipe] = useState({});
   const [activeTab, setActiveTab] = useState("instructions");
 
-  let params = useParams();
-
-  const localStorageValues = () => {
-    let localKeys = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      localKeys.push(localStorage.key(i).toLowerCase());
-    }
-    return localKeys;
-  };
-
   const getCuisine = async (name) => {
-    const searchQuery = await getQuery(name);
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
-        import.meta.env.VITE_API_KEY
-      }&number=9&${searchQuery}`
-    );
-    console.log("STATUS =>", data.status);
-    if (data.status !== 200) {
-      fetchLocalData();
+    // console.log("GetCuisine => name", name);
+    if (
+      localStorage[`${name}`] === "undefined" ||
+      typeof localStorage[`${name}`] === "undefined"
+    ) {
+      // console.log(` INSIDE => ${name} - Storage is undefined.`);
+      const localData = await fetchLocalData(name);
+      if (localData ?? false) {
+        localStorage.setItem(
+          `${name.split(" ").join()}`,
+          JSON.stringify(localData)
+        );
+        console.log("Undefined in Storage => LD", localData);
+        setIsLoading(false);
+        setCuisine(localData);
+      }
+    } else if (localStorage[`${name}`] !== "undefined") {
+      // console.log(` INSIDE => ${name} - Local Storage available.`);
+      // console.log("TPYE OF LS", typeof localStorage[`${name}`]);
+      setCuisine(JSON.parse(localStorage.getItem(`${name.toLowerCase()}`)));
     }
-    const recipes = await data.json();
-    setCuisine(recipes.results);
+    // console.log(`END OF ${frontSelect}`, frontRecipes);
+    else {
+      // console.log("name1 ==> ", name);
+      const searchQuery = await getQuery(name);
+      const data = await getRecipesFromAPI(searchQuery);
+      // console.log("searchQuery ==> ", searchQuery);
+      // console.log("DATAAAA ==> ", data);
+      // const data = await fetch(
+      //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
+      //     import.meta.env.VITE_API_KEY
+      //   }&number=1&${searchQuery}`
+      // );
+      // console.log("STATUS =>", data.status);
+      // if (data.status !== 200) {
+      //   // Check Local Storage
+      //   console.log("go to fetch locally =>", data.status);
+      //   fetchLocalData(name);
+      // }
+      const recipes = await data.json();
+      localStorage.setItem(
+        `${name.split(" ").join("")}`,
+        JSON.stringify(recipes.results)
+      );
+      setIsLoading(false);
+      setCuisine(recipes.results);
+    }
   };
 
-  const fetchLocalData = async () => {
-    const localData = await fetch(
-      `../../src/data/${params.type.toLowerCase()}.json`
+  const fetchLocalData = async (name) => {
+    // console.log("fetching Locally - NAME =>", name);
+    if (name) {
+      // console.log("Inside ", name);
+      const response = await fetch(`../../src/data/${name.toLowerCase()}.json`);
+      // console.log("response", response);
+
+      if (response.status === 200) {
+        // console.log("inside 200");
+        const recipes = await response.json();
+        return recipes;
+      } else {
+        const dataAPI = await getRecipesFromAPI(name);
+        localStorage.setItem(
+          `${name.split(" ").join("")}`,
+          JSON.stringify(dataAPI)
+        );
+        setIsLoading(false);
+        setCuisine(dataAPI);
+      }
+    } else {
+      console.log("NO LOCAL DATA");
+    }
+  };
+
+  const getRecipesFromAPI = async (name) => {
+    const searchQuery = await getQuery(name);
+    // console.log("INSIDE getRecipesFromAPI", name);
+    // console.log("searchQUery", searchQuery);
+    // if (frontSelect === "vegan" && countVegan >= 1) {
+    //   console.log("front select is vegan", frontSelect);
+    //   const api = await fetch(
+    //     `https://api.spoonacular.com/recipes/random?apiKey=${
+    //       import.meta.env.VITE_API_KEY
+    //     }&number=4&tags=${frontSelect}`
+    //   );
+    //   const data = await api.json();
+    //   setFrontRecipes(data.recipes);
+    // } else {
+
+    // console.log("STATUS =>", data.status);
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/complexSearch?number=4&${searchQuery}&apiKey=${
+        import.meta.env.VITE_API_KEY
+      }`
     );
-    const recipes = await localData.json();
-    setCuisine(recipes);
+    if (data.status === 200) {
+      const recipes = await data.json();
+      // console.log("RECIPES =>", recipes);
+      const { results } = recipes;
+      // console.log("RESULTS =>", results);
+      return results;
+      // return recipes;
+    } else {
+      // Check Local Storage
+      console.log("go to fetch locally =>", data.status);
+      fetchLocalData(searchQuery);
+    }
+
+    // const api = await fetch(
+    //   `https://api.spoonacular.com/recipes/random?apiKey=${
+    //     import.meta.env.VITE_API_KEY
+    //   }&number=4`
+    // );
+
+    // const data = await api.json();
+    // // localStorage.setItem(`${frontSelect}`, JSON.stringify(data.recipes));
+    // setCuisine(data.recipes);
+    // // }
   };
 
   const getQuery = (name) => {
@@ -59,99 +149,129 @@ export default function ContextProvider({ children }) {
         result = `type=${name}`;
         break;
       default:
-        result = "no results found.";
+        // result = "no results found.";
+        result = `query=${name}`;
     }
     return result;
   };
 
-  const getSearch = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
-        import.meta.env.VITE_API_KEY
-      }&number=9&query=${name}`
-    );
-    const recipes = await data.json();
-    // if (data.status !== 200) {
-    //   res.send("No data from API");
-    //   res.end;
-    //   // fetchLocalData();
-    // }
-    if (recipes.results > 0) {
-      setIsLoading(true);
-    }
-    setSearchedRecipes(recipes.results);
-    console.log("Searched Recipes", recipes.results);
-    console.log("localStorageSearch => ", params.searchResults);
-    // SEARCHED RECIPES SHOULD NOW BE ADDED TO LOCAL STORAGE
-    // TO PREVENT TOKEN
-    localStorage.setItem(
-      `${params.searchResults}`,
-      JSON.stringify(recipes.results)
-    );
-  };
+  // useEffect(() => {
+  //   console.log("type =>", type);
+  //   console.log("selCuis =>", selectedCuisine);
+  //   // }, [location.pathname !== "/", selectedCuisine]);
+  // }, [selectedCuisine, input]);
 
-  useEffect(
-    () => {
-      if (
-        cuisine !== undefined ||
-        cuisine !== null ||
-        searchResults !== undefined ||
-        searchResults !== null
-      ) {
-        console.log("uE => sR", searchResults);
-        setIsLoading(false);
-      }
+  // useEffect(() => {
+  //   // console.log("isLoading =>", isLoading);
+  //   // console.log("type =>", type);
+  //   // console.log("cuisine =>", cuisine);
+  //   // console.log("cuisine Length =>", cuisine?.length);
 
-      let localKeys = localStorageValues();
-      console.log("localKeys", localKeys);
-      if (localKeys.includes(params.type)) {
-        // console.log("true localKeys included? ", localKeys);
-        const cuisine = JSON.parse(
-          localStorage.getItem(`${params.type.toLowerCase()}`)
-        );
-        setCuisine(cuisine);
-      }
+  //   console.log("Input =>", input);
+  // }, [location.pathname !== "/", isLoading]);
 
-      if (localKeys.includes(params.searchResults)) {
-        // console.log("true localKeys included? ", localKeys);
-        const cuisine = JSON.parse(
-          localStorage.getItem(`${params.searchResults.toLowerCase()}`)
-        );
-        setSearchedRecipes(searchedRecipes);
-      }
+  // useEffect(() => {
+  //   if (location.pathname !== "/") {
+  //     if (
+  //       cuisine !== undefined ||
+  //       cuisine !== null ||
+  //       searchedRecipes !== undefined ||
+  //       searchedRecipes !== null
+  //     ) {
+  //       setIsLoading(false);
+  //     }
+  //     // console.log("T->S", type != selectedCuisine);
+  //     // if (type !== selectedCuisine) {
+  //     //   console.log("TYPE =>", type);
+  //     //   console.log("SelCUI =>", selectedCuisine);
 
-      if (cuisine === null || !localKeys.includes(params.type)) {
-        getCuisine(params.type || params.searchResults);
-      }
-      // if (
-      //   searchedRecipes === null ||
-      //   !localKeys.includes(params.searchResults)
-      // ) {
-      //   getSearch(params.searchResults);
-      // }
-      console.log("searchParams => ", params.searchResults);
-      getSearch(params.searchResults);
-    },
-    [params.type],
-    [params.searchResults]
-  );
+  //     //   // checkLocalStorage();
+  //     // }
+
+  //     let localKeys = localStorageKeys();
+
+  //     // if (selectedCuisine) {
+  //     //   console.log(selectedCuisine, "SELCUI");
+  //     //   console.log(
+  //     //     "getItem",
+  //     //     localStorage.getItem(`${selectedCuisine.toLowerCase()}`)
+  //     //   );
+  //     //   console.log("[] => ", localStorage[`${selectedCuisine.toLowerCase()}`]);
+  //     // }
+
+  //     // if (input) {
+  //     //   console.log(localStorage[`${input.toLowerCase()}`]);
+  //     // }
+
+  //     // if (
+  //     //   localStorage.getItem(`${selectedCuisine.toLowerCase()}`) !== null &&
+  //     //   localStorage[`${selectedCuisine.toLowerCase()}`] !== undefined &&
+  //     //   localKeys.includes(selectedCuisine.toLowerCase())
+  //     // ) {
+  //     //   const cuisine = JSON.parse(
+  //     //     localStorage.getItem(`${selectedCuisine.toLowerCase()}`)
+  //     //   );
+  //     //   console.log("CUISINE =>", cuisine);
+  //     //   setCuisine(cuisine);
+  //     // }
+
+  //     // if (
+  //     //   localStorage[`${input.toLowerCase()}`] !== undefined ||
+  //     //   localStorage[`${input.toLowerCase()}`] !== null ||
+  //     //   localKeys.includes(input.toLowerCase())
+  //     // ) {
+  //     //   const cuisine = JSON.parse(
+  //     //     localStorage.getItem(`${input.toLowerCase()}`)
+  //     //   );
+  //     //   console.log("CUISINE =>", cuisine);
+  //     //   setCuisine(cuisine);
+  //     // }
+
+  //     if (
+  //       selectedCuisine !== "" ||
+  //       selectedCuisine !== undefined ||
+  //       (selectedCuisine !== null &&
+  //         localStorage[`${selectedCuisine}`] === "undefined") ||
+  //       typeof localStorage[`${selectedCuisine}`] === "undefined"
+  //       // !localKeys.includes(selectedCuisine)
+  //     ) {
+  //       getCuisine(selectedCuisine);
+  //     }
+  //     if (
+  //       input !== "" ||
+  //       searchedRecipes !== undefined ||
+  //       searchedRecipes !== null ||
+  //       !localKeys.includes(input)
+  //     ) {
+  //       getCuisine(input);
+  //     }
+  //     // }, [selectedCuisine, searchedRecipes])
+  //   }
+  // }, [location.pathname !== "/"]);
 
   return (
     <Context.Provider
       value={{
-        input,
-        setInput,
-        cuisine,
-        setCuisine,
         isLoading,
         setIsLoading,
-        searchedRecipes,
-        setSearchedRecipes,
+        // currentLocation,
+        // setCurrentLocation,
+        // selectedCuisine,
+        // setSelectedCuisine,
+        cuisine,
+        setCuisine,
+        input,
+        setInput,
+        type,
+        setType,
+        // searchedRecipes,
+        // setSearchedRecipes,
         detailedRecipe,
         setDetailedRecipe,
         activeTab,
         setActiveTab,
         fetchLocalData,
+        getCuisine,
       }}
     >
       {children}

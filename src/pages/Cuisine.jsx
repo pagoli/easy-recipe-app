@@ -4,10 +4,24 @@ import { Wrapper, Grid, Card } from "../styles/CuisineStyle";
 import { Link, useParams } from "react-router-dom";
 
 const Cuisine = () => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const { cuisine, isLoading } = useContext(Context);
+  const {
+    setType,
+    getCuisine,
+    cuisine,
+    setSelectedCuisine,
+    selectedCuisine,
+    isLoading,
+  } = useContext(Context);
 
-  let params = useParams();
+  let { type } = useParams();
+
+  useEffect(() => {
+    // setSelectedCuisine(type);
+    // setType(type);
+    // console.log("uE cuisine", cuisine);
+    // console.log("Type =>", type);
+    getCuisine(type);
+  }, [type]);
 
   // const localStorageValues = () => {
   //   let localKeys = [];
@@ -66,7 +80,6 @@ const Cuisine = () => {
 
   //   let localKeys = localStorageValues();
   //   if (localKeys.includes(params.type)) {
-  //     // console.log("true localKeys included? ", localKeys);
   //     const cuisine = JSON.parse(
   //       localStorage.getItem(`${params.type.toLowerCase()}`)
   //     );
@@ -100,19 +113,12 @@ const Cuisine = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {params.type ? (
-        <h3>{params.type.charAt(0).toUpperCase() + params.type.slice(1)}</h3>
-      ) : (
-        <></>
-      )}
+      {type ? <h3>{type.charAt(0).toUpperCase() + type.slice(1)}</h3> : <></>}
       <Grid variants={container} initial="hidden" animate="show">
-        {/* {console.log("CUISINE JSX=> ", cuisine)} */}
-        {(isLoading && cuisine == undefined) || cuisine === null ? (
-          <div>
-            <h3>No recipes</h3>
-          </div>
+        {isLoading && cuisine?.length <= 0 ? (
+          <h4>Loading...</h4>
         ) : (
-          cuisine.map((recipe) => {
+          cuisine?.map((recipe) => {
             return (
               <Card key={recipe.id} variants={item}>
                 <Link to={`/recipe/${recipe.id}`}>
@@ -123,6 +129,24 @@ const Cuisine = () => {
             );
           })
         )}
+        {/* {(isLoading && cuisine === undefined) ||
+        cuisine === null ||
+        cuisine === undefined ? (
+          <div>
+            <h3>No recipes</h3>
+          </div>
+        ) : (
+          cuisine?.map((recipe) => {
+            return (
+              <Card key={recipe.id} variants={item}>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <h4>{recipe.title}</h4>
+                </Link>
+              </Card>
+            );
+          })
+        )} */}
       </Grid>
     </Wrapper>
   );

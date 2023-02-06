@@ -26,7 +26,7 @@ const FormStyle = styled.form`
   }
   svg {
     position: absolute;
-    top: 0%;
+    top: 3%;
     left: -0.8%;
     translate: 100% 50%;
     font-size: var(--fz-3xl);
