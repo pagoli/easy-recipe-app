@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <ContextProvider>
     <FontStyles />
-    <BrowserRouter>
+    <BrowserRouter basename="/easy-recipe-app">
       <App />
     </BrowserRouter>
   </ContextProvider>

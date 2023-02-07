@@ -13,13 +13,10 @@ const Pages = () => {
     <>
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
-          <Route path="/easy-recipe-app/" element={<Home />} />
-          <Route path="/easy-recipe-app/cuisine/:type" element={<Cuisine />} />
-          <Route
-            path="/easy-recipe-app/search/:searchResults"
-            element={<Searched />}
-          />
-          <Route path="/easy-recipe-app/recipe/:id" element={<Recipe />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cuisine/:type" element={<Cuisine />} />
+          <Route path="/search/:searchResults" element={<Searched />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

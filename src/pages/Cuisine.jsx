@@ -42,7 +42,7 @@ const Cuisine = () => {
           cuisine?.map((recipe) => {
             return (
               <Card key={recipe.id} variants={item}>
-                <Link to={`/easy-recipe-app/recipe/${recipe.id}`}>
+                <Link to={`/recipe/${recipe.id}`}>
                   <img src={recipe.image} alt={recipe.title} />
                   <h4>{recipe.title}</h4>
                 </Link>

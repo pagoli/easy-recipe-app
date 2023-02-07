@@ -11,7 +11,7 @@ const Search = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    navigate(`/easy-recipe-app/search/${input}`);
+    navigate(`/search/${input}`);
   };
 
   return (
