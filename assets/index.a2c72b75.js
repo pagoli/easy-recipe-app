@@ -650,7 +650,7 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-`;function ZP(){return ae("div",{className:"App",children:[b(XP,{}),b(S5,{}),b(NE,{}),b(VE,{}),b(KP,{}),b(C5,{})]})}var JP="/fonts/josefin-sans-v25-latin-300.ttf",qP="/fonts/josefin-sans-v25-latin-regular.ttf",eT="/fonts/josefin-sans-v25-latin-700.ttf",tT="/fonts/abril-fatface-v19-latin-regular.ttf";const nT=$g`
+`;function ZP(){return ae("div",{className:"App",children:[b(XP,{}),b(S5,{}),b(NE,{}),b(VE,{}),b(KP,{}),b(C5,{})]})}var JP="/easy-recipe-app/fonts/josefin-sans-v25-latin-300.ttf",qP="/easy-recipe-app/fonts/josefin-sans-v25-latin-regular.ttf",eT="/easy-recipe-app/fonts/josefin-sans-v25-latin-700.ttf",tT="/easy-recipe-app/fonts/abril-fatface-v19-latin-regular.ttf";const nT=$g`
 
 @font-face {
   font-family: "Josefin Sans";
