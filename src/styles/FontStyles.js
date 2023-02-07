@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import JosefinSans300 from "/fonts/josefin-sans-v25-latin-300.ttf?import";
-import JosefinSans400 from "/fonts/josefin-sans-v25-latin-regular.ttf?import";
+import JosefinSans300 from "/fonts/josefin-sans-v25-latin-300.ttf";
+import JosefinSans400 from "/fonts/josefin-sans-v25-latin-regular.ttf";
 import JosefinSans700 from "/fonts/josefin-sans-v25-latin-700.ttf";
 import AbrilFatFaceTFF from "/fonts/abril-fatface-v19-latin-regular.ttf";
 

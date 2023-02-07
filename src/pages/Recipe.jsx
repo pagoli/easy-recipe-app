@@ -23,7 +23,6 @@ const Recipe = () => {
     );
     const detailedData = await data.json();
     setDetailedRecipe(detailedData);
-    console.log(detailedRecipe.summary);
   };
 
   useEffect(() => {
