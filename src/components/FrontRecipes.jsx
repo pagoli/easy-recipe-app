@@ -16,10 +16,6 @@ const FrontRecipes = ({ frontSelect }) => {
 
   useEffect(() => {
     getFrontRecipes(); // On page load, getFrontRecipes gets evoked
-    // }, [location.pathname === "/"]);
-    // if (frontRecipes.length <= 0) {
-    //   getFrontRecipes();
-    // }
   }, []);
 
   const getFrontRecipes = async () => {
@@ -27,9 +23,7 @@ const FrontRecipes = ({ frontSelect }) => {
       localStorage[`${frontSelect}`] === "undefined" ||
       typeof localStorage[`${frontSelect}`] === "undefined"
     ) {
-      console.log(` INSIDE => ${frontSelect} - Storage is undefined.`);
       const localData = await fetchLocalData(frontSelect);
-      console.log("LOCAL DATA => ", localData);
       localStorage.setItem(
         `${frontSelect.split(" ").join()}`,
         JSON.stringify(localData)
@@ -38,13 +32,10 @@ const FrontRecipes = ({ frontSelect }) => {
     }
 
     if (localStorage[`${frontSelect}`] !== "undefined") {
-      // console.log(` INSIDE => ${frontSelect} - Local Storage available.`);
-      // console.log("TPYE OF LS", typeof localStorage[`${frontSelect}`]);
       setFrontRecipes(
         JSON.parse(localStorage.getItem(`${frontSelect.toLowerCase()}`))
       );
     }
-    // console.log(`END OF ${frontSelect}`, frontRecipes);
   };
 
   const getNewFrontRecipes = async (frontSelect) => {
@@ -77,7 +68,6 @@ const FrontRecipes = ({ frontSelect }) => {
       );
 
       const data = await api.json();
-      // localStorage.setItem(`${frontSelect}`, JSON.stringify(data.recipes));
       setFrontRecipes(data.recipes);
     }
   };

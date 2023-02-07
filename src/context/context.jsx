@@ -41,7 +41,9 @@ export default function ContextProvider({ children }) {
 
   const fetchLocalData = async (name) => {
     if (name) {
-      const response = await fetch(`../../src/data/${name.toLowerCase()}.json`);
+      // const response = await fetch(`../../src/data/${name.toLowerCase()}.json`);
+      const response = await fetch(`/data/${name.toLowerCase()}.json`);
+      console.log("RESPONSE => ", response);
 
       if (response.status === 200) {
         const recipes = await response.json();
