@@ -661,7 +661,7 @@ Error generating stack: `+o.message+`
     --duration-page: 0.4;
     --opacity-full: 1;
   }
-`,eT=$g`
+`;var eT="/easy-recipe-app/images/recipe_bg_white.png";const tT=$g`
 ${qP};
 * {
   margin: 0;
@@ -678,7 +678,7 @@ html {
 
 body {
   margin: 0% 15%;
-  background-image: url(/images/recipe_bg_white.png);
+  background-image: url(${eT});
   background-size: auto;
   
 }
@@ -706,11 +706,11 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-`;function tT(){return ae("div",{className:"App",children:[b(eT,{}),b(S5,{}),b(NE,{}),b(VE,{}),b(JP,{}),b(C5,{})]})}var nT="/easy-recipe-app/fonts/josefin-sans-v25-latin-300.ttf",rT="/easy-recipe-app/fonts/josefin-sans-v25-latin-regular.ttf",iT="/easy-recipe-app/fonts/josefin-sans-v25-latin-700.ttf",oT="/easy-recipe-app/fonts/abril-fatface-v19-latin-regular.ttf";const sT=$g`
+`;function nT(){return ae("div",{className:"App",children:[b(tT,{}),b(S5,{}),b(NE,{}),b(VE,{}),b(JP,{}),b(C5,{})]})}var rT="/easy-recipe-app/fonts/josefin-sans-v25-latin-300.ttf",iT="/easy-recipe-app/fonts/josefin-sans-v25-latin-regular.ttf",oT="/easy-recipe-app/fonts/josefin-sans-v25-latin-700.ttf",sT="/easy-recipe-app/fonts/abril-fatface-v19-latin-regular.ttf";const aT=$g`
 
 @font-face {
   font-family: "Josefin Sans";
-  src: url(${nT}) format('truetype');
+  src: url(${rT}) format('truetype');
   font-style: normal;
   font-weight: 300;
   font-display: auto;
@@ -718,7 +718,7 @@ a {
 
 @font-face {
   font-family: "Josefin Sans";
-  src: url(${rT}) format('truetype');
+  src: url(${iT}) format('truetype');
   font-style: normal;
   font-weight: 400;
   font-display: auto;
@@ -726,7 +726,7 @@ a {
 
 @font-face {
   font-family: "Josefin Sans";
-  src: url(${iT}) format('truetype');
+  src: url(${oT}) format('truetype');
   font-style: normal;
   font-weight: 700;
   font-display: auto;
@@ -734,9 +734,9 @@ a {
 
 @font-face {
   font-family: "Abril Fatface";
-  src: url(${oT}) format("truetype");
+  src: url(${sT}) format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: auto;
 }
-`;ju.createRoot(document.getElementById("root")).render(ae(RS,{children:[b(sT,{}),b(RE,{basename:"/easy-recipe-app",children:b(tT,{})})]}));
+`;ju.createRoot(document.getElementById("root")).render(ae(RS,{children:[b(aT,{}),b(RE,{basename:"/easy-recipe-app",children:b(nT,{})})]}));
