@@ -30,6 +30,7 @@ const Variables = css`
     --black: #000;
     --gray: #3e3e3e;
     --light-gray: rgba(0, 0, 0, 0.2);
+    --light-red: rgba(255, 56, 115, 0.8);
     --blue: #057dcd;
     --yellow: #ffde17;
     --light-yellow: rgba(255, 222, 23, 0.4);
