@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { Variables } from "./Variables";
+import BG_white from "/images/recipe_bg_white.png";
 
 const GlobalStyle = createGlobalStyle`
 ${Variables};
@@ -18,7 +19,7 @@ html {
 
 body {
   margin: 0% 15%;
-  background-image: url(/images/recipe_bg_white.png);
+  background-image: url(${BG_white});
   background-size: auto;
   
 }
