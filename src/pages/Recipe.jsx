@@ -11,15 +11,15 @@ import {
 import { useParams } from "react-router-dom";
 
 const Recipe = () => {
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
+
   let params = useParams();
   const { detailedRecipe, setDetailedRecipe, activeTab, setActiveTab } =
     useContext(Context);
 
   const fetchDetails = async () => {
     const data = await fetch(
-      `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${
-        import.meta.env.VITE_API_KEY
-      }`
+      `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${apiKey}`
     );
     const detailedData = await data.json();
     setDetailedRecipe(detailedData);

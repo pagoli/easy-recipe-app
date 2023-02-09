@@ -10,6 +10,8 @@ export default function ContextProvider({ children }) {
   const [detailedRecipe, setDetailedRecipe] = useState({});
   const [activeTab, setActiveTab] = useState("instructions");
 
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
+
   const getCuisine = async (name) => {
     if (
       localStorage[`${name}`] === "undefined" ||
@@ -75,15 +77,9 @@ export default function ContextProvider({ children }) {
 
   const getRecipesFromAPI = async (name) => {
     const searchQuery = await getQuery(name);
-    // if (import.meta.env.VITE_API_KEY === "undefined") {
-    //   setIsLoading(true);
-    //   setCuisine([]);
-    // }
 
     const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?number=4&${searchQuery}&apiKey=${
-        import.meta.env.VITE_API_KEY
-      }`
+      `https://api.spoonacular.com/recipes/complexSearch?number=4&${searchQuery}&apiKey=${apiKey}`
     );
     console.log("data => ", data.status);
     console.log("data URL  => ", data.url);
@@ -93,9 +89,6 @@ export default function ContextProvider({ children }) {
       const { results } = recipes;
       return results;
     } else {
-      // fetchLocalData(searchQuery);
-      // setIsLoading(true);
-      // setCuisine([]);
       return [];
     }
   };
