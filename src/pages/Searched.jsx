@@ -32,9 +32,11 @@ const Searched = () => {
         exit={{ opacity: 0, transition: { duration: 1 } }}
         variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
       >
-        {(isLoading && cuisine === undefined) || cuisine === null ? (
+        {(isLoading && cuisine === undefined) ||
+        cuisine === null ||
+        cuisine.length <= 0 ? (
           <div>
-            <h3>No recipes</h3>
+            <h3>No recipes found.</h3>
           </div>
         ) : (
           cuisine?.map((recipe) => {
