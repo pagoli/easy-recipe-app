@@ -22,6 +22,7 @@ const Search = () => {
           onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
+          placeholder="In deployed Github-Pages Version, Search does not work."
         />
       </div>
     </FormStyle>

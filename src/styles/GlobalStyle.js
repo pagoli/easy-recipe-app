@@ -47,6 +47,10 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+input::placeholder {
+  font-size: var(--fz-lg);
+}
 `;
 
 export { GlobalStyle };
