@@ -16,7 +16,7 @@ export default function ContextProvider({ children }) {
       typeof localStorage[`${name}`] === "undefined"
     ) {
       const localData = await fetchLocalData(name);
-      if (localData ?? false) {
+      if (localData) {
         localStorage.setItem(
           `${name.split(" ").join()}`,
           JSON.stringify(localData)
@@ -42,16 +42,25 @@ export default function ContextProvider({ children }) {
   const fetchLocalData = async (name) => {
     if (name) {
       // const response = await fetch(`../../src/data/${name.toLowerCase()}.json`);
+      // const response = await fetch(
+      //   `/easy-recipe-app/data/${name.toLowerCase()}.json`
+      // );
+
       const response = await fetch(
-        `/easy-recipe-app/data/${name.toLowerCase()}.json`
+        `https://raw.githubusercontent.com/pagoli/easy-recipe-app/main/assets/data/${name.toLowerCase()}.json`
       );
-      console.log("RESPONSE => ", response);
 
       if (response.status === 200) {
+        console.log("RES", response.status);
+
         const recipes = await response.json();
         return recipes;
       } else {
+        console.log("DATA API");
+        console.log(" ", response.status);
+
         const dataAPI = await getRecipesFromAPI(name);
+        console.log("DATA API RES", dataAPI);
         localStorage.setItem(
           `${name.split(" ").join("")}`,
           JSON.stringify(dataAPI)
@@ -66,11 +75,16 @@ export default function ContextProvider({ children }) {
 
   const getRecipesFromAPI = async (name) => {
     const searchQuery = await getQuery(name);
+    console.log(searchQuery, "does not include!");
+
     const data = await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?number=4&${searchQuery}&apiKey=${
         import.meta.env.VITE_API_KEY
       }`
     );
+    console.log("data => ", data.status);
+    console.log("data => ", data.url);
+
     if (data.status === 200) {
       const recipes = await data.json();
       const { results } = recipes;
@@ -81,6 +95,15 @@ export default function ContextProvider({ children }) {
   };
 
   const getQuery = (name) => {
+    let cuisineNames = [
+      "italian",
+      "chinese",
+      "american",
+      "vegan",
+      "desserts",
+      "popular",
+    ];
+    console.log("includes?????", name, "=>", !cuisineNames.includes(name));
     let result;
     switch (name) {
       case "italian":
@@ -94,8 +117,13 @@ export default function ContextProvider({ children }) {
       case "desserts":
         result = `type=${name}`;
         break;
+      case "popular":
+      case !cuisineNames.includes(name):
+        result = `query=${name}`;
+        break;
       default:
         result = `query=${name}`;
+        break;
     }
     return result;
   };
