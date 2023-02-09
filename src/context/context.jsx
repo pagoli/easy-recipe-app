@@ -44,25 +44,15 @@ export default function ContextProvider({ children }) {
   const fetchLocalData = async (name) => {
     if (name) {
       // const response = await fetch(`../../src/data/${name.toLowerCase()}.json`);
-      // const response = await fetch(
-      //   `/easy-recipe-app/data/${name.toLowerCase()}.json`
-      // );
-
       const response = await fetch(
         `https://raw.githubusercontent.com/pagoli/easy-recipe-app/main/assets/data/${name.toLowerCase()}.json`
       );
 
       if (response.status === 200) {
-        console.log("RES", response.status);
-
         const recipes = await response.json();
         return recipes;
       } else {
-        console.log("DATA API");
-        console.log(" ", response.status);
-
         const dataAPI = await getRecipesFromAPI(name);
-        console.log("DATA API RES", dataAPI);
         localStorage.setItem(
           `${name.split(" ").join("")}`,
           JSON.stringify(dataAPI)
@@ -81,8 +71,6 @@ export default function ContextProvider({ children }) {
     const data = await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?number=4&${searchQuery}&apiKey=${apiKey}`
     );
-    console.log("data => ", data.status);
-    console.log("data URL  => ", data.url);
 
     if (data.status === 200) {
       const recipes = await data.json();
@@ -94,15 +82,6 @@ export default function ContextProvider({ children }) {
   };
 
   const getQuery = (name) => {
-    let cuisineNames = [
-      "italian",
-      "chinese",
-      "american",
-      "vegan",
-      "desserts",
-      "popular",
-    ];
-    console.log("includes?????", name, "=>", !cuisineNames.includes(name));
     let result;
     switch (name) {
       case "italian":
@@ -117,8 +96,6 @@ export default function ContextProvider({ children }) {
         result = `type=${name}`;
         break;
       case "popular":
-      case !cuisineNames.includes(name):
-        // cuisineNames.push(name);
         result = `query=${name}`;
         break;
       default:
